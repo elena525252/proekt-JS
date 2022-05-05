@@ -16,7 +16,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_toTopBtn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/toTopBtn */ \"./src/modules/toTopBtn.js\");\n/* harmony import */ var _modules_timerclock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/timerclock */ \"./src/modules/timerclock.js\");\n\r\n\r\n\r\n\r\n(0,_modules_toTopBtn__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\r\n\r\n;(0,_modules_timerclock__WEBPACK_IMPORTED_MODULE_1__[\"default\"])('8 may 2022')\n\n//# sourceURL=webpack://middle_diplom/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_toTopBtn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/toTopBtn */ \"./src/modules/toTopBtn.js\");\n/* harmony import */ var _modules_timerclock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/timerclock */ \"./src/modules/timerclock.js\");\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ \"./src/modules/modal.js\");\n\r\n\r\n\r\n\r\n\r\n(0,_modules_toTopBtn__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\r\n\r\n;(0,_modules_timerclock__WEBPACK_IMPORTED_MODULE_1__[\"default\"])('8 may 2022')\r\n\r\n;(0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n\n//# sourceURL=webpack://middle_diplom/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/modal.js":
+/*!******************************!*\
+  !*** ./src/modules/modal.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst modal = () => {\r\n    const headerModal = document.querySelector('.header-modal')\r\n    const serviceModal = document.querySelector('.services-modal')\r\n\r\n    const overlay = document.querySelector('.overlay')\r\n\r\n    const closeBtns = document.querySelectorAll('[title=\"Close\"]')\r\n    const fancyBtns = document.querySelectorAll('.fancyboxModal')\r\n\r\n    fancyBtns.forEach(btn => {\r\n        btn.addEventListener('click', (e) => {\r\n            if (btn.hash === '#callback') {\r\n                headerModal.style.display = 'block'\r\n                overlay.style.display = 'block'\r\n            } else if (btn.hash === '#application') {\r\n                serviceModal.style.display = 'block'\r\n                overlay.style.display = 'block'\r\n                \r\n            }\r\n        })\r\n    })\r\n\r\n    closeBtns.forEach(btn => {\r\n        btn.addEventListener('click', () => {\r\n            headerModal.style.display = 'none'\r\n            overlay.style.display = 'none'\r\n            serviceModal.style.display = 'none'\r\n        })\r\n    })\r\n}\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n//# sourceURL=webpack://middle_diplom/./src/modules/modal.js?");
 
 /***/ }),
 
