@@ -1,3 +1,3 @@
-import toTop from './modules/toTopBtn'
+import toTopBtn from './modules/toTopBtn'
 
-toTop()
+toTopBtn()
