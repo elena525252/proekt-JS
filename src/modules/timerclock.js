@@ -1,4 +1,4 @@
-const timer = (discount) => {
+const timerclock = (discount) => {
     const timerDaysBoxs = document.querySelectorAll('.count_1')
     const timerHoursBoxs = document.querySelectorAll('.count_2')
     const timerMinutesBoxs = document.querySelectorAll('.count_3')
@@ -72,4 +72,4 @@ const timer = (discount) => {
     }
     updateClock()
 }
-export default timer
+export default timerclock
