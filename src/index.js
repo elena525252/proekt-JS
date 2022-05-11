@@ -13,24 +13,25 @@ sliderFirst()
 sliderSecond()
 modal()
 toTop()
-timer('8 may 2022')
+timer('29 may 2022')
 calculatorCounter()
 imageZoom()
 
 
-formSender({
-    formId: '[name = "action-form"]', 
-    someElem: [
-        {
-            type: 'block',
-        }
-    ] 
-})
-formSender({
-    formId: '[name = "action-form2"]', 
-    someElem: [
-        {
-            type: 'block',
-        }
-    ] 
+const forms = document.querySelectorAll('form')
+forms.forEach((form, index) => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        form.id = `form${index}`
+        
+        formSender({
+            formId: `form${index}`,
+            someElem: [
+                {
+                    type: 'block',
+                    id: 'calc-total'
+                }
+            ] 
+        })
+    })
 })

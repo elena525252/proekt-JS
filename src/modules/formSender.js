@@ -1,39 +1,28 @@
-import formValidator from './formValidator'
-
 const formSender = ({formId, someElem = [] }) => {
-    const form = document.querySelector(formId)
+    const form = document.getElementById(formId)
     const statusBlock = document.createElement('div')
 
-    const inputPhone = document.querySelectorAll('[name="phone"]')
-    const inputName = document.querySelectorAll('[name="fio"]')
+    const loadText = 'Идет загрузка...'
+    const errorText = 'Что-то пошло не так...'
+    const successText = 'Успешно! Скоро мы с Вами свяжемся'
 
-    const loadText = 'Идет загрузка. Подождите.'
-    const errorText = 'Что-то пошло не так.'
-    const successText = 'Успешно. С Вами свяжутся.'
-
-    const validChecker = (formElements) => {
+    const validate = (formElements) => {
         let success = true
-        formElements.forEach(inputName => {
-            if (inputName === '') {
-                success = false
-            }
-            if (inputName.getAttribute('name') == 'fio') {
-                if (inputName.value.match(/[^a-zA-Z\s]/g)) {
+        formElements.forEach(input => {
+           if (input.name == 'fio') {
+                if (input.value === '') {
+                    success = false
+                } else if (input.value.match(/[^а-яА-Я\^a-zA-Z\s]/g)) {
                     success = false
                 }
-            }
-        })
-        formElements.forEach(inputPhone => {
-            if (inputPhone.value === '') {
-                success = false
-            }
-            if (inputPhone.getAttribute('name') == 'phone') {
-                if (inputPhone.value.match(/[^0-9\(\)\+\-]/g)) {
+            } else if (input.name == 'phone') {
+                if (input.value === '') {
+                    success = false
+                } else if (input.value.match(/[^0-9\(\)\+\-]/g)) {
                     success = false
                 }
             } 
         })
-
         return success
     }
 
@@ -51,7 +40,6 @@ const formSender = ({formId, someElem = [] }) => {
         const formElements = form.querySelectorAll('input')
         const formData = new FormData(form)
         const formBody = {}
-
         statusBlock.textContent = loadText
         form.append(statusBlock)
 
@@ -59,7 +47,22 @@ const formSender = ({formId, someElem = [] }) => {
             formBody[key] = val
         })
 
-        if (validChecker(formElements)) {
+        
+        someElem.forEach(elem => {
+            const element = document.getElementById(elem.id)
+            if (document.querySelector('body').classList.contains('balkony')) {
+                if(element == null) {
+                    console.log('Верните блок!');
+                } else {
+                    if (elem.type === 'block') {
+                        formBody[elem.id] = element.value
+                    }
+                }
+            }
+            
+        })
+
+        if (validate(formElements)) {
             sendData(formBody)
                 .then(data => {
                     statusBlock.textContent = successText
@@ -67,6 +70,9 @@ const formSender = ({formId, someElem = [] }) => {
                     formElements.forEach(input => {
                         input.value = ''
                     })
+                    setTimeout(() => {
+                        statusBlock.remove()
+                    }, 2000)
                 })
                 .catch(error => {
                     statusBlock.textContent = errorText
@@ -75,22 +81,21 @@ const formSender = ({formId, someElem = [] }) => {
         } else {
             alert('Некорректное заполнение полей!')
             statusBlock.textContent = errorText
+            setTimeout(() => {
+                statusBlock.remove()
+            }, 2000)
         }
     }
-    formValidator()
+
     try {
         if (!form) {
-            throw new Error ('Проблемы с формой')
+            throw new Error ('Верните форму')
         }
-
-        form.addEventListener('submit', (event) => {
-            event.preventDefault()
-    
-            submitForm()
-        })
+        submitForm()
     } catch (error) {
         console.log(error.message);
     }
+    
+    
 }
-
 export default formSender
